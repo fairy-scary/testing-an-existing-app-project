@@ -45,10 +45,35 @@ describe("The mergeItems function", () => {
   });
 
   it("should return a single <tr>, four <td>s, and no <form> for one completed item", () => {
-    expect.fail('please write this test');
+    const items = [
+      { title: 'Title 1', category: 'Category 1', isComplete: true },
+    ];
+
+    const result = mergeItems(template, items)
+    expect(result).to.include("<table>")
+    expect(result).to.include("</table>")
+    expect(result).to.include("<tbody>")
+    expect(result).to.include("</tbody>")
+    expect(result).to.include("<tr>")
+    expect(result).to.include("</tr>")
+    expect(result).to.include("<td>1</td>")
+    expect(result).to.include("<td>Title 1</td>")
+    expect(result).to.include("<td>Category 1</td>")
+    expect(result).to.include("<td>")
+    expect(result).to.include("</td>")
+    expect(result).to.not.contain('<form method="POST" action="/items/1">')
+    expect(result).to.not.contain("<!-- Content here -->")
   });
 
   it("should return three <tr>s for three items", () => {
-    expect.fail('please write this test');
+    const items = ['1', '2', '3'];
+
+    const result = mergeItems(template, items);
+    expect(result).to.include("<tr>")
+    expect(result).to.include("</tr>")
+    expect(result).to.include("<tr>")
+    expect(result).to.include("</tr>")
+    expect(result).to.include("<tr>")
+    expect(result).to.include("</tr>")
   });
 });
