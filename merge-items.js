@@ -21,7 +21,7 @@ function mergeItems(template, items) {
     `;
     index += 1;
   }
-
+  console.log(trs)
   return template.replace('<!-- Content here -->', trs);
 }
 
